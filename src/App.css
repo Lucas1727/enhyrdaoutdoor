@@ -1,0 +1,117 @@
+:root {
+    --ink: #f4f7f6;
+    --sea: #1f3a44;
+    --serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+    --sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    height: 100%;
+}
+
+body {
+    background: var(--sea);
+    color: var(--ink);
+    font-family: var(--sans), sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+
+/* Background photo */
+.bg,
+.bg::after {
+    position: fixed;
+    inset: 0;
+}
+
+.bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 40% 50%;
+    display: block;
+}
+
+.bg::after {
+    content: '';
+    background: radial-gradient(ellipse at center, rgb(8 22 28 / 0.55) 0%, rgb(8 22 28 / 0.25) 70%),
+    linear-gradient(to bottom, rgb(8 22 28 / 0.2), rgb(8 22 28 / 0.35));
+}
+
+@media (max-width: 640px) and (orientation: portrait) {
+    .bg img {
+        object-position: 50% 50%;
+    }
+}
+
+/* Content */
+.hero {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(1rem, 3vw, 1.75rem);
+    padding: max(16px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(16px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+    text-align: center;
+}
+
+.brand {
+    font-family: var(--serif), sans-serif;
+    font-weight: 500;
+    font-size: clamp(2.5rem, 9vw, 7rem);
+    line-height: 1.05;
+    letter-spacing: 0.12em;
+    margin: 0 -0.12em 0 0;
+    text-shadow: 0 2px 24px rgb(0 0 0 / 0.35);
+    animation: rise 1.2s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.divider {
+    width: clamp(3rem, 10vw, 6rem);
+    height: 1px;
+    background: currentColor;
+    opacity: 0.7;
+    animation: grow 1.2s 0.3s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.tagline {
+    margin: 0 -0.4em 0 0;
+    font-size: clamp(0.75rem, 2.2vw, 1.1rem);
+    font-weight: 500;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    opacity: 0.9;
+    animation: rise 1.2s 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@keyframes rise {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+}
+
+@keyframes grow {
+    from {
+        transform: scaleX(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .brand,
+    .divider,
+    .tagline {
+        animation: none;
+    }
+}

@@ -1,0 +1,5 @@
+node_modules
+dist
+*.tsbuildinfo
+# 16 MB source photo; generated variants live in public/images
+DSCF4577.JPG
